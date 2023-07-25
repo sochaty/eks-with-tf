@@ -1,8 +1,8 @@
 # Define Local Scope Data
 locals {
-  owners = var.business_divsion
+  owners = var.business_division
   environment = var.environment
-  name = "${var.business_divsion}-${var.environment}"  
+  name = "${var.business_division}-${var.environment}"  
   common_tags = {
     owners = local.owners
     environment = local.environment

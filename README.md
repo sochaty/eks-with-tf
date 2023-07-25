@@ -1,2 +1,5 @@
 # eks-with-tf
-Deploying AWS EKS using terraform
+This repository is responsible to deploying AWS EKS using terraform
+
+## Maintainers
+Sourish Chakraborty [SOURISH @CODE](https://www.sourishchakraborty.com/)

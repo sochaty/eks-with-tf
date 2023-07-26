@@ -10,9 +10,5 @@ terraform {
 }
 
 provider "aws" {
-<<<<<<< HEAD:terraform/dev/deploy-iam-roles/versions.tf
   region = var.aws_region
-=======
-  region = var.region
->>>>>>> main:terraform/dev/deploy-eks/versions.tf
 }

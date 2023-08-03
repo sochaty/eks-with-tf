@@ -3,7 +3,6 @@ module "iam-role" {
     business_division = var.business_division    
     environment = var.environment
     aws_region = var.aws_region
-    count = length(var.iam_roles)
-    
-    iam_role = var.iam_roles[count.index]    
+    cluster_roles = var.cluster_roles  
+    nodegroup_roles = var.nodegroup_roles
 }

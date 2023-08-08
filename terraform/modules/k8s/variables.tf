@@ -1,23 +1,23 @@
 variable "aws_region" {
   description = "Region Name"
-  type = string 
-  default = "us-east-1"
+  type        = string
+  default     = "us-east-1"
 }
 
 variable "business_division" {
   description = "Team"
-  type = string 
+  type        = string
 }
 
 variable "environment" {
   description = "Infrastructure Environment"
-  type = string 
+  type        = string
 }
 
 # EKS Cluster Input Variables
 variable "cluster_name" {
   description = "Name of the EKS cluster. Also used as a prefix in names of related resources."
-  type        = string  
+  type        = string
 }
 
 variable "cluster_service_ipv4_cidr" {
@@ -28,7 +28,7 @@ variable "cluster_service_ipv4_cidr" {
 
 variable "cluster_version" {
   description = "Kubernetes minor version to use for the EKS cluster (for example 1.21)"
-  type = string
+  type        = string
   default     = null
 }
 variable "cluster_endpoint_private_access" {
@@ -60,49 +60,49 @@ variable "cluster_endpoint_public_access_cidrs" {
 # }
 
 variable "eks_control_role" {
-    description = "IAM role that provides permissions for the Kubernetes control plane to make calls to AWS API operations on your behalf"
-    type = string
+  description = "IAM role that provides permissions for the Kubernetes control plane to make calls to AWS API operations on your behalf"
+  type        = string
 }
 
 variable "nodegroup_role" {
-    description = "Amazon Resource Name (ARN) of the IAM Role that provides permissions for the EKS Node Group"
-    type = string
+  description = "Amazon Resource Name (ARN) of the IAM Role that provides permissions for the EKS Node Group"
+  type        = string
 }
 
 variable "vpc_name" {
-    description = "Cluster VPC Name"
-    type = string
+  description = "Cluster VPC Name"
+  type        = string
 }
 
 variable "vpc_public_subnets" {
-    description = "VPC Public Subnets"
-    type = list(string)
+  description = "VPC Public Subnets"
+  type        = list(string)
 }
 
 variable "vpc_private_subnets" {
-    description = "VPC Private Subnets"
-    type = list(string)
+  description = "VPC Private Subnets"
+  type        = list(string)
 }
 
 variable "eks_nodegroup_list" {
-    description = "Cluster NodeGroups"
-    type = list(object({
-      name = string
-      is_private = bool
-      ami_type = string
-      capacity_type = string
-      disk_size = number
-      instance_types = list(string)
-      remote_access = object({
-        ec2_ssh_key = string
-      })
-      scaling = object({
-        expected = number
-        min = number
-        max = number
-      })
-      update_config = object({
-        max_unavailable = number
-      })
-    }))
+  description = "Cluster NodeGroups"
+  type = list(object({
+    name           = string
+    is_private     = bool
+    ami_type       = string
+    capacity_type  = string
+    disk_size      = number
+    instance_types = list(string)
+    remote_access = object({
+      ec2_ssh_key = string
+    })
+    scaling = object({
+      expected = number
+      min      = number
+      max      = number
+    })
+    update_config = object({
+      max_unavailable = number
+    })
+  }))
 }

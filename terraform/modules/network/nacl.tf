@@ -23,6 +23,6 @@ resource "aws_default_network_acl" "vpc_acl" {
     Name = "${local.name}-${var.vpc_name}-NACL123"
   }
 
-  depends_on = [aws_subnet.public-subnet, aws_subnet.private-subnet, aws_subnet.db-subnet]
+  depends_on = [aws_subnet.public-subnet, aws_subnet.private-subnet]
 
 }

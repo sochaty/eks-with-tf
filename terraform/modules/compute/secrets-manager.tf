@@ -8,6 +8,6 @@ data "aws_secretsmanager_secret_version" "secret_current_version" {
 }
 
 resource "local_file" "ssh_secret" {
-    content  = data.aws_secretsmanager_secret_version.secret_current_version.secret_string
-    filename = "private-key/${var.key_pair_name}.pem"
+  content  = data.aws_secretsmanager_secret_version.secret_current_version.secret_string
+  filename = "private-key/${var.key_pair_name}.pem"
 }

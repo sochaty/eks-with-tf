@@ -10,7 +10,7 @@ data "aws_vpc" "vpc" {
   filter {
     name   = "tag:Name"
     values = [var.vpc_name]
-  }  
+  }
 }
 
 data "aws_subnets" "private-subnets" {
@@ -19,11 +19,11 @@ data "aws_subnets" "private-subnets" {
     name   = "vpc-id"
     values = [data.aws_vpc.vpc.id]
   }
-  
+
   filter {
     name   = "tag:Name"
     values = ["Private-Subnet-*"]
-  }  
+  }
 }
 
 data "aws_subnets" "public-subnets" {
@@ -36,7 +36,7 @@ data "aws_subnets" "public-subnets" {
   filter {
     name   = "tag:Name"
     values = ["Public-Subnet-*"]
-  }  
+  }
 }
 
 # data "aws_vpc" "cluster_vpc" {

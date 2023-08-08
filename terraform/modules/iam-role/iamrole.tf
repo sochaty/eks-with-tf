@@ -1,6 +1,6 @@
 resource "aws_iam_role" "cluster_iam_role" {
-  for_each = {for role in var.cluster_roles:  role.role_name => role}
-  name = "${each.value.role_name}"
+  for_each = { for role in var.cluster_roles : role.role_name => role }
+  name     = each.value.role_name
 
   assume_role_policy = jsonencode({
     Statement = [{
@@ -15,8 +15,8 @@ resource "aws_iam_role" "cluster_iam_role" {
 }
 
 resource "aws_iam_role" "nodegroup_iam_role" {
-  for_each = {for role in var.nodegroup_roles:  role.role_name => role}
-  name = "${each.value.role_name}"
+  for_each = { for role in var.nodegroup_roles : role.role_name => role }
+  name     = each.value.role_name
 
   assume_role_policy = jsonencode({
     Statement = [{
@@ -35,7 +35,7 @@ resource "aws_iam_role_policy_attachment" "cluster_iam_policy" {
 
   policy_arn = each.value.policy_arn
   role       = each.value.role_name
-  depends_on = [ aws_iam_role.cluster_iam_role ]
+  depends_on = [aws_iam_role.cluster_iam_role]
 }
 
 resource "aws_iam_role_policy_attachment" "nodegroup_iam_policy" {
@@ -43,5 +43,5 @@ resource "aws_iam_role_policy_attachment" "nodegroup_iam_policy" {
 
   policy_arn = each.value.policy_arn
   role       = each.value.role_name
-  depends_on = [ aws_iam_role.nodegroup_iam_role ]
+  depends_on = [aws_iam_role.nodegroup_iam_role]
 }

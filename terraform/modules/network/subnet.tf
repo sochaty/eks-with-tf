@@ -12,27 +12,27 @@ data "aws_subnets" "public-subnets" {
     name   = "tag:Name"
     values = ["Public-Subnet-*"]
   }
-  depends_on = [aws_subnet.db-subnet]
-}
-
-data "aws_subnets" "db-subnets" {
-  filter {
-    name   = "tag:Name"
-    values = ["Db-Subnet-*"]
-  }
   depends_on = [aws_subnet.public-subnet]
 }
+
+# data "aws_subnets" "db-subnets" {
+#   filter {
+#     name   = "tag:Name"
+#     values = ["Db-Subnet-*"]
+#   }
+#   depends_on = [aws_subnet.public-subnet]
+# }
 
 resource "aws_subnet" "public-subnet" {
   count = length(var.vpc_public_subnets)
 
-  cidr_block        = var.vpc_public_subnets[count.index]
-  vpc_id            = aws_vpc.vpc.id
-  availability_zone = "${var.aws_region}${var.zones[count.index]}"
+  cidr_block              = var.vpc_public_subnets[count.index]
+  vpc_id                  = aws_vpc.vpc.id
+  availability_zone       = "${var.aws_region}${var.vpc_availability_zones[count.index]}"
   map_public_ip_on_launch = true
 
-  tags = {    
-    Name = "Public-Subnet-${var.aws_region}${var.zones[count.index]}"
+  tags = {
+    Name = "Public-Subnet-${var.aws_region}${var.vpc_availability_zones[count.index]}"
   }
   depends_on = [
     aws_vpc.vpc
@@ -44,27 +44,27 @@ resource "aws_subnet" "private-subnet" {
 
   cidr_block        = var.vpc_private_subnets[count.index]
   vpc_id            = aws_vpc.vpc.id
-  availability_zone = "${var.aws_region}${var.zones[count.index]}"
+  availability_zone = "${var.aws_region}${var.vpc_availability_zones[count.index]}"
 
   tags = {
-    Name = "Private-Subnet-${var.aws_region}${var.zones[count.index]}"
+    Name = "Private-Subnet-${var.aws_region}${var.vpc_availability_zones[count.index]}"
   }
   depends_on = [
     aws_vpc.vpc
   ]
 }
 
-resource "aws_subnet" "db-subnet" {
-  count = length(var.vpc_database_subnets)
+# resource "aws_subnet" "db-subnet" {
+#   count = length(var.vpc_database_subnets)
 
-  cidr_block        = var.vpc_database_subnets[count.index]
-  vpc_id            = aws_vpc.vpc.id
-  availability_zone = "${var.aws_region}${var.zones[count.index]}"
+#   cidr_block        = var.vpc_database_subnets[count.index]
+#   vpc_id            = aws_vpc.vpc.id
+#   availability_zone = "${var.aws_region}${var.vpc_availability_zones[count.index]}"
 
-  tags = {
-    Name = "Db-Subnet-${var.aws_region}${var.zones[count.index]}"
-  }
-  depends_on = [
-    aws_vpc.vpc
-  ]
-}
+#   tags = {
+#     Name = "Db-Subnet-${var.aws_region}${var.vpc_availability_zones[count.index]}"
+#   }
+#   depends_on = [
+#     aws_vpc.vpc
+#   ]
+# }

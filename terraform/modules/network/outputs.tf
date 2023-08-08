@@ -33,16 +33,11 @@ output "nat_public_ips" {
 # VPC AZs
 
 output "list_of_private_azs" {
-    description = "A list of private availability zones"
-    value = aws_subnet.private-subnet[*].availability_zone
+  description = "A list of private availability zones"
+  value       = aws_subnet.private-subnet[*].availability_zone
 }
 
 output "list_of_public_azs" {
   description = "A list of public availability zones"
-  value = aws_subnet.public-subnet[*].availability_zone
-}
-
-output "list_of_db_azs" {
-  description = "A list of public availability zones"
-  value = aws_subnet.db-subnet[*].availability_zone
+  value       = aws_subnet.public-subnet[*].availability_zone
 }

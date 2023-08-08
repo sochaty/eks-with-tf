@@ -10,6 +10,7 @@ output "vpc_id" {
 output "vpc_cidr_block" {
   description = "The CIDR block of the VPC"
   value       = module.network.vpc_cidr_block
+  sensitive   = true
 }
 
 # VPC Private Subnets
@@ -33,16 +34,13 @@ output "nat_public_ips" {
 # VPC AZs
 
 output "list_of_private_azs" {
-    description = "A list of private availability zones"
-    value = module.network.list_of_private_azs
+  description = "A list of private availability zones"
+  value       = module.network.list_of_private_azs
+  sensitive   = true
 }
 
 output "list_of_public_azs" {
   description = "A list of public availability zones"
-  value = module.network.list_of_public_azs
-}
-
-output "list_of_db_azs" {
-  description = "A list of public availability zones"
-  value = module.network.list_of_db_azs
+  value       = module.network.list_of_public_azs
+  sensitive   = true
 }

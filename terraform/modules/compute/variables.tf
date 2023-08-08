@@ -1,17 +1,6 @@
-variable "aws_region" {
-  description = "Region Name"
-  type = string 
-  default = "us-east-1"
-}
-
-variable "business_division" {
-  description = "Team"
-  type = string 
-}
-
 variable "environment" {
   description = "Infrastructure Environment"
-  type = string 
+  type        = string
 }
 
 variable "instance_name" {
@@ -21,20 +10,17 @@ variable "instance_name" {
 
 variable "instance_type" {
   description = "Bastion Host EC2 Instance Type"
-  type = string
-#   default = "t3.micro"  
+  type        = string  
 }
 
 variable "instance_user" {
   description = "Bastion Host EC2 Instance User"
-  type = string
-#   default = "t3.micro"  
+  type        = string  
 }
 
 variable "key_pair_name" {
   description = "AWS EC2 Key pair that need to be associated with EC2 Instance"
-  type = string
-#   default = "eks-terraform-key"
+  type        = string  
 }
 
 variable "public_subnet_ids" {
@@ -43,6 +29,6 @@ variable "public_subnet_ids" {
 }
 
 variable "vpc_name" {
-    description = "Cluster VPC Name"
-    type = string
+  description = "Cluster VPC Name"
+  type        = string
 }

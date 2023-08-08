@@ -1,5 +1,5 @@
 terraform {
-  
+
   backend "s3" {
     bucket = "aws-terraform-demo"
     key    = "dev/eks-with-tf/network.tfstate"

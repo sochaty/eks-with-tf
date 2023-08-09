@@ -1,5 +1,5 @@
 # Define Local Scope Data
-locals {  
+locals {
   cluster_policies = flatten([
     for role in var.cluster_roles :
     [for policy_arn in role.policy_list : {

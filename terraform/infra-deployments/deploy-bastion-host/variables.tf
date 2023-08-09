@@ -18,7 +18,7 @@ variable "instance_user" {
 
 variable "key_pair_name" {
   description = "AWS EC2 Key pair that need to be associated with EC2 Instance"
-  type        = string  
+  type        = string
 }
 
 variable "parameters" {

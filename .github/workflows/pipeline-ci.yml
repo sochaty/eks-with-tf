@@ -66,15 +66,15 @@ jobs:
     - name: Run checkov
       run: checkov -d . --quiet
 
-    - name: Terraform Plan
-      id: plan
-      # if: github.event_name == 'pull_request'
-      run: terraform plan -var-file=../environments/dev/iam.tfvars -input=false -out=tfplan
-      continue-on-error: true
+    # - name: Terraform Plan
+    #   id: plan
+    #   # if: github.event_name == 'pull_request'
+    #   run: terraform plan -var-file=../environments/dev/iam.tfvars -input=false -out=tfplan
+    #   continue-on-error: true
 
-    - name: Check for Changes in Terraform Plan
-      id: plan_changes
-      run: echo "::set-output name=changed::$(terraform show -json tfplan | jq '.resource_changes | length > 0')"
+    # - name: Check for Changes in Terraform Plan
+    #   id: plan_changes
+    #   run: echo "::set-output name=changed::$(terraform show -json tfplan | jq '.resource_changes | length > 0')"
 
     # - name: Terraform Apply
     #   if: steps.plan_changes.outputs.changed == 'true'
@@ -96,7 +96,7 @@ jobs:
     defaults:
      run:
        shell: bash       
-       working-directory: ./terraform/infra-deployments/deployment-network
+       working-directory: ./terraform/infra-deployments/deploy-network
     
     steps:
     - name: Checkout the repository to the runner
@@ -140,15 +140,15 @@ jobs:
     - name: Run checkov
       run: checkov -d . --quiet
 
-    - name: Terraform Plan
-      id: plan
-      # if: github.event_name == 'pull_request'
-      run: terraform plan -var-file=../../environments/dev/deploy-network.tfvars -input=false -out=tfplan
-      continue-on-error: true
+    # - name: Terraform Plan
+    #   id: plan
+    #   # if: github.event_name == 'pull_request'
+    #   run: terraform plan -var-file=../../environments/dev/deploy-network.tfvars -input=false -out=tfplan
+    #   continue-on-error: true
 
-    - name: Check for Changes in Terraform Plan
-      id: plan_changes
-      run: echo "::set-output name=changed::$(terraform show -json tfplan | jq '.resource_changes | length > 0')"
+    # - name: Check for Changes in Terraform Plan
+    #   id: plan_changes
+    #   run: echo "::set-output name=changed::$(terraform show -json tfplan | jq '.resource_changes | length > 0')"
 
     # - name: Terraform Apply
     #   if: steps.plan_changes.outputs.changed == 'true'

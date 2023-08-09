@@ -13,7 +13,7 @@ env:
  aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
  aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
  # S3 bucket for the Terraform state
- IAM_TF_STATE: ${{ secrets.IAM_TF_STATE }} 
+ BUCKET_TF_STATE: ${{ secrets.BUCKET_TF_STATE }} 
 
 jobs:
   iam_ci:
@@ -52,7 +52,7 @@ jobs:
       run: pip install checkov    
 
     - name: Terraform Init
-      run: terraform init -backend-config="bucket=$IAM_TF_STATE"
+      run: terraform init -backend-config="bucket=$BUCKET_TF_STATE"
 
     - name: Terraform Format Check
       run: terraform fmt -check=true
@@ -88,8 +88,8 @@ jobs:
     #    if: steps.plan.outcome == 'failure'
     #    run: exit 1
 
-    - name: Clean up
-      run: rm -f tfplan
+    # - name: Clean up
+    #   run: rm -f tfplan
   network_ci:
     name: "Network Build"
     runs-on: ubuntu-latest
@@ -126,7 +126,7 @@ jobs:
       run: pip install checkov    
 
     - name: Terraform Init
-      run: terraform init -backend-config="bucket=$IAM_TF_STATE"
+      run: terraform init -backend-config="bucket=$BUCKET_TF_STATE"
 
     - name: Terraform Format Check
       run: terraform fmt -check=true
@@ -138,29 +138,102 @@ jobs:
       run: tfsec --tfvars-file '../../environments/dev/deploy-network.tfvars' --soft-fail=true
 
     - name: Run checkov
-      run: checkov -d . --quiet --soft-fail
+      run: checkov -d . --quiet --soft-fail    
+  eks_ci:
+    name: "EKS Build"
+    runs-on: ubuntu-latest
+    defaults:
+     run:
+       shell: bash       
+       working-directory: ./terraform/infra-deployments/deploy-eks
+    
+    steps:
+    - name: Checkout the repository to the runner
+      uses: actions/checkout@v2
 
-    # - name: Terraform Plan
-    #   id: plan
-    #   # if: github.event_name == 'pull_request'
-    #   run: terraform plan -var-file=../../environments/dev/deploy-network.tfvars -input=false -out=tfplan
-    #   continue-on-error: true
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
 
-    # - name: Check for Changes in Terraform Plan
-    #   id: plan_changes
-    #   run: echo "::set-output name=changed::$(terraform show -json tfplan | jq '.resource_changes | length > 0')"
+    - name: Test configuration of AWS CLI
+      run: |
+        aws --version
+        aws configure list | grep region | awk '{print $2}'
 
-    # - name: Terraform Apply
-    #   if: steps.plan_changes.outputs.changed == 'true'
-    #   run: terraform apply -auto-approve tfplan
+    - name: Setup Terraform with specified version on the runner
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: 1.3.5
 
-    # - name: Store Outputs
-    #   id: terraform_outputs
-    #   run: echo "::set-output name=outputs::$(terraform output -json)"
+    - name: Install tfsec
+      run: curl -L https://github.com/liamg/tfsec/releases/latest/download/tfsec-linux-amd64 -o tfsec && chmod +x tfsec && sudo mv tfsec /usr/local/bin/
 
-    # - name: Terraform Plan Status
-    #    if: steps.plan.outcome == 'failure'
-    #    run: exit 1
+    - name: Install checkov
+      run: pip install checkov    
 
-    - name: Clean up
-      run: rm -f tfplan
+    - name: Terraform Init
+      run: terraform init -backend-config="bucket=$BUCKET_TF_STATE"
+
+    - name: Terraform Format Check
+      run: terraform fmt -check=true
+
+    - name: Terraform Validate
+      run: terraform validate
+
+    - name: Run tfsec
+      run: tfsec --tfvars-file '../../environments/dev/deploy-eks.tfvars' --soft-fail=true
+
+    - name: Run checkov
+      run: checkov -d . --quiet --soft-fail    
+  bastion_host_ci:
+    name: "Bastion-Host Build"
+    runs-on: ubuntu-latest
+    defaults:
+     run:
+       shell: bash       
+       working-directory: ./terraform/infra-deployments/deploy-bastion-host
+    
+    steps:
+    - name: Checkout the repository to the runner
+      uses: actions/checkout@v2
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+
+    - name: Test configuration of AWS CLI
+      run: |
+        aws --version
+        aws configure list | grep region | awk '{print $2}'
+
+    - name: Setup Terraform with specified version on the runner
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: 1.3.5
+
+    - name: Install tfsec
+      run: curl -L https://github.com/liamg/tfsec/releases/latest/download/tfsec-linux-amd64 -o tfsec && chmod +x tfsec && sudo mv tfsec /usr/local/bin/
+
+    - name: Install checkov
+      run: pip install checkov    
+
+    - name: Terraform Init
+      run: terraform init -backend-config="bucket=$BUCKET_TF_STATE"
+
+    - name: Terraform Format Check
+      run: terraform fmt -check=true
+
+    - name: Terraform Validate
+      run: terraform validate
+
+    - name: Run tfsec
+      run: tfsec --tfvars-file '../../environments/dev/deploy-bastion-host.tfvars' --soft-fail=true
+
+    - name: Run checkov
+      run: checkov -d . --quiet --soft-fail    

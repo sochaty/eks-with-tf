@@ -13,7 +13,7 @@ env:
  aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
  aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
  # S3 bucket for the Terraform state
- BUCKET_TF_STATE: ${{ secrets.BUCKET_TF_STATE }} 
+ IAM_TF_STATE: ${{ secrets.IAM_TF_STATE }} 
 
 jobs:
   iam_ci:
@@ -52,7 +52,7 @@ jobs:
       run: pip install checkov    
 
     - name: Terraform Init
-      run: terraform init
+      run: terraform init -backend-config="bucket=$IAM_TF_STATE"
 
     - name: Terraform Format Check
       run: terraform fmt -check=true
@@ -126,7 +126,7 @@ jobs:
       run: pip install checkov    
 
     - name: Terraform Init
-      run: terraform init
+      run: terraform init -backend-config="bucket=$IAM_TF_STATE"
 
     - name: Terraform Format Check
       run: terraform fmt -check=true

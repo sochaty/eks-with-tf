@@ -16,5 +16,5 @@ module "compute" {
   public_subnet_ids = split(",", module.parameters.values["/eks-with-tf/vpc_public_subnets"])
   vpc_name          = module.parameters.values["/eks-with-tf/vpc_name"]
 
-  depends_on = [ module.parameters ]
+  depends_on = [module.parameters]
 }

@@ -20,6 +20,6 @@ resource "null_resource" "copy_bastion_host_keys" {
     inline = [
       "sudo chmod 400 /tmp/${var.key_pair_name}.pem"
     ]
-  }  
+  }
 
 }

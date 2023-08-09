@@ -10,17 +10,17 @@ variable "instance_name" {
 
 variable "instance_type" {
   description = "Bastion Host EC2 Instance Type"
-  type        = string  
+  type        = string
 }
 
 variable "instance_user" {
   description = "Bastion Host EC2 Instance User"
-  type        = string  
+  type        = string
 }
 
 variable "key_pair_name" {
   description = "AWS EC2 Key pair that need to be associated with EC2 Instance"
-  type        = string  
+  type        = string
 }
 
 variable "public_subnet_ids" {

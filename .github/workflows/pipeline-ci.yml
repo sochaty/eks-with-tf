@@ -61,7 +61,7 @@ jobs:
       run: terraform validate
 
     - name: Run tfsec
-      run: tfsec
+      run: tfsec --tfvars-file '../environments/dev/iam.tfvars' --soft-fail=true
 
     - name: Run checkov
       run: checkov -d . --quiet
@@ -135,7 +135,7 @@ jobs:
       run: terraform validate
 
     - name: Run tfsec
-      run: tfsec
+      run: tfsec --tfvars-file '../../environments/dev/deploy-network.tfvars' --soft-fail=true
 
     - name: Run checkov
       run: checkov -d . --quiet

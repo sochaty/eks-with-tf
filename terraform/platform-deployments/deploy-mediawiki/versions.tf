@@ -13,7 +13,9 @@ terraform {
 
   backend "s3" {
     bucket = "aws-terraform-demo"
-    key    = "dev/eks-with-tf/bastionHost.tfstate"
+
+    key    = "dev/eks-with-tf/mediawiki.tfstate"
+
     region = "us-east-1"
 
     dynamodb_table = "vpc-solution"

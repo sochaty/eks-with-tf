@@ -56,7 +56,9 @@ resource "kubernetes_deployment_v1" "mediawiki_deployment" {
 resource "kubernetes_deployment_v1" "mediawiki-db" {
   metadata {
     name      = "mediawiki-db"
+
     # namespace = var.namespace
+
   }
 
   spec {

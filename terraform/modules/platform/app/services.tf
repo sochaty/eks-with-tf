@@ -1,6 +1,6 @@
 resource "kubernetes_service_v1" "demoapp_lb_service" {
   metadata {
-    name      = "demoapp-lb-service"
+    name = "demoapp-lb-service"
     # namespace = var.namespace
   }
 

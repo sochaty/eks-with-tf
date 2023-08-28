@@ -1,6 +1,6 @@
 resource "kubernetes_deployment_v1" "demoapp_deployment" {
   metadata {
-    name      = "demoapp-deployment"
+    name = "demoapp-deployment"
     labels = {
       app = "demoapp"
     }
@@ -30,7 +30,7 @@ resource "kubernetes_deployment_v1" "demoapp_deployment" {
           port {
             container_port = 80
           }
-        }        
+        }
       }
     }
   }

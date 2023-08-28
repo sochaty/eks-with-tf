@@ -64,7 +64,7 @@ jobs:
       run: echo "::set-output name=changed::$(terraform show -json tfplan | jq '.resource_changes | length > 0')"
 
     - name: Terraform Apply
-      run: terraform apply -var-file=../environments/dev/iam.tfvars -auto-approve tfplan
+      run: terraform apply -var-file=../environments/dev/iam.tfvars -auto-approve
 
     - name: Store Outputs
       id: terraform_outputs
@@ -116,7 +116,7 @@ jobs:
 
     - name: Terraform Plan
       id: plan
-      run: terraform plan -var-file=../environments/dev/deploy-network.tfvars -input=false -out=tfplan
+      run: terraform plan -var-file=../../environments/dev/deploy-network.tfvars -input=false -out=tfplan
       continue-on-error: true 
 
     - name: Check for Changes in Terraform Plan
@@ -124,7 +124,7 @@ jobs:
       run: echo "::set-output name=changed::$(terraform show -json tfplan | jq '.resource_changes | length > 0')"
 
     - name: Terraform Apply
-      run: terraform apply -var-file=../environments/dev/deploy-network.tfvars -auto-approve
+      run: terraform apply -var-file=../../environments/dev/deploy-network.tfvars -auto-approve
 
     - name: Store Outputs
       id: terraform_outputs
@@ -177,7 +177,7 @@ jobs:
 
     - name: Terraform Plan
       id: plan
-      run: terraform plan -var-file=../environments/dev/deploy-eks.tfvars -input=false -out=tfplan
+      run: terraform plan -var-file=../../environments/dev/deploy-eks.tfvars -input=false -out=tfplan
       continue-on-error: true 
 
     - name: Check for Changes in Terraform Plan
@@ -185,7 +185,7 @@ jobs:
       run: echo "::set-output name=changed::$(terraform show -json tfplan | jq '.resource_changes | length > 0')"
 
     - name: Terraform Apply
-      run: terraform apply -var-file=../environments/dev/deploy-eks.tfvars -auto-approve tfplan
+      run: terraform apply -var-file=../../environments/dev/deploy-eks.tfvars -auto-approve tfplan
 
     - name: Store Outputs
       id: terraform_outputs
@@ -238,7 +238,7 @@ jobs:
 
     - name: Terraform Plan
       id: plan
-      run: terraform plan -var-file=../environments/dev/deploy-bation-host.tfvars -input=false -out=tfplan
+      run: terraform plan -var-file=../../environments/dev/deploy-bation-host.tfvars -input=false -out=tfplan
       continue-on-error: true 
 
     - name: Check for Changes in Terraform Plan
@@ -246,7 +246,7 @@ jobs:
       run: echo "::set-output name=changed::$(terraform show -json tfplan | jq '.resource_changes | length > 0')"
 
     - name: Terraform Apply
-      run: terraform apply -var-file=../environments/dev/deploy-bation-host.tfvars -auto-approve tfplan
+      run: terraform apply -var-file=../../environments/dev/deploy-bation-host.tfvars -auto-approve tfplan
 
     - name: Store Outputs
       id: terraform_outputs

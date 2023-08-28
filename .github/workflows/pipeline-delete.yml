@@ -100,7 +100,7 @@ jobs:
 
     - name: Terraform Destroy
       id: destroy
-      run: terraform destroy -var-file=../environments/dev/deploy-network.tfvars -auto-approve -no-color -input=false
+      run: terraform destroy -var-file=../../environments/dev/deploy-network.tfvars -auto-approve -no-color -input=false
       continue-on-error: true 
   delete_eks_stack:
     name: "Delete EKS Cluster"
@@ -143,7 +143,7 @@ jobs:
 
     - name: Terraform Destroy
       id: destroy
-      run: terraform destroy -var-file=../environments/dev/deploy-eks.tfvars -auto-approve -no-color -input=false
+      run: terraform destroy -var-file=../../environments/dev/deploy-eks.tfvars -auto-approve -no-color -input=false
       continue-on-error: true      
   delete_bastion_host_stack:
     name: "Delete Bastion-Host"
@@ -185,7 +185,7 @@ jobs:
 
     - name: Terraform Destroy
       id: destroy
-      run: terraform destroy -var-file=../environments/dev/deploy-bation-host.tfvars -auto-approve -no-color -input=false
+      run: terraform destroy -var-file=../../environments/dev/deploy-bation-host.tfvars -auto-approve -no-color -input=false
       continue-on-error: true     
   delete_app_stack:
     name: "Delete App Stack"

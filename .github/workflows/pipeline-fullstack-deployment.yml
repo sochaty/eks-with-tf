@@ -185,7 +185,7 @@ jobs:
       run: echo "::set-output name=changed::$(terraform show -json tfplan | jq '.resource_changes | length > 0')"
 
     - name: Terraform Apply
-      run: terraform apply -var-file=../../environments/dev/deploy-eks.tfvars -auto-approve tfplan
+      run: terraform apply -var-file=../../environments/dev/deploy-eks.tfvars -auto-approve
 
     - name: Store Outputs
       id: terraform_outputs
@@ -246,7 +246,7 @@ jobs:
       run: echo "::set-output name=changed::$(terraform show -json tfplan | jq '.resource_changes | length > 0')"
 
     - name: Terraform Apply
-      run: terraform apply -var-file=../../environments/dev/deploy-bation-host.tfvars -auto-approve tfplan
+      run: terraform apply -var-file=../../environments/dev/deploy-bation-host.tfvars -auto-approve
 
     - name: Store Outputs
       id: terraform_outputs

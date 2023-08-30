@@ -44,7 +44,7 @@ jobs:
     - name: Setup Terraform with specified version on the runner
       uses: hashicorp/setup-terraform@v2
       with:
-        terraform_version: 1.3.5
+        terraform_version: 1.5.5
 
     - name: Terraform Init
       run: terraform init
@@ -87,7 +87,7 @@ jobs:
     - name: Setup Terraform with specified version on the runner
       uses: hashicorp/setup-terraform@v2
       with:
-        terraform_version: 1.3.5
+        terraform_version: 1.5.5
 
     - name: Terraform Init
       run: terraform init
@@ -130,7 +130,7 @@ jobs:
     - name: Setup Terraform with specified version on the runner
       uses: hashicorp/setup-terraform@v2
       with:
-        terraform_version: 1.3.5
+        terraform_version: 1.5.5
 
     - name: Terraform Init
       run: terraform init
@@ -172,7 +172,7 @@ jobs:
     - name: Setup Terraform with specified version on the runner
       uses: hashicorp/setup-terraform@v2
       with:
-        terraform_version: 1.3.5
+        terraform_version: 1.5.5
 
     - name: Terraform Init
       run: terraform init
@@ -214,7 +214,7 @@ jobs:
     - name: Setup Terraform with specified version on the runner
       uses: hashicorp/setup-terraform@v2
       with:
-        terraform_version: 1.3.5
+        terraform_version: 1.5.5
 
     - name: Terraform Init
       run: terraform init

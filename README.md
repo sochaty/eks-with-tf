@@ -4,6 +4,12 @@
 
 Welcome to the **EKS Deployment with Terraform and GitHub Actions** repository! This repository contains the code and resources related to the blog post [From Code to Cloud: Mastering EKS Deployment with Terraform and GitHub Actions](https://www.sourishchakraborty.com/post/from-code-to-cloud-mastering-eks-deployment-with-terraform-and-github-actions) by Sourish Chakraborty.
 
+[![EKS-With-Terraform CI](https://github.com/sochaty/eks-with-tf/actions/workflows/pipeline-ci.yml/badge.svg?branch=main)](https://github.com/sochaty/eks-with-tf/actions/workflows/pipeline-ci.yml)
+
+[![EKS-With-Terraform Deployment Delete](https://github.com/sochaty/eks-with-tf/actions/workflows/pipeline-delete.yml/badge.svg?branch=main)](https://github.com/sochaty/eks-with-tf/actions/workflows/pipeline-delete.yml)
+
+[![EKS-With-Terraform Infrastructure Deployment](https://github.com/sochaty/eks-with-tf/actions/workflows/pipeline-fullstack-deployment.yml/badge.svg?branch=main)](https://github.com/sochaty/eks-with-tf/actions/workflows/pipeline-fullstack-deployment.yml)
+
 ## Project Overview
 
 This project demonstrates the seamless deployment of applications on Amazon EKS using Terraform and GitHub Actions. The main goal is to provide a comprehensive guide and example for deploying and managing Kubernetes-based applications in an efficient and secure manner.

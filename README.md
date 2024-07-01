@@ -8,7 +8,7 @@
 
 ## Introduction
 
-In the ever-evolving landscape of cloud computing, deploying and managing applications with reliability and scalability is crucial. This project showcases the utilization of various AWS services and tools to achieve seamless deployment of an Elastic Kubernetes Service (EKS) cluster and application deployment on Amazon's EKS using Terraform and GitHub Actions. Building upon the insights shared in the blog "Exploring AWS EKS with eksctl," we will explore a comprehensive implementation that leverages AWS Parameter Store, AWS Secrets Manager, AWS EKS, and AWS Network Services, coupled with the power of GitHub Actions for CI/CD.
+In the ever-evolving landscape of cloud computing, deploying and managing applications with reliability and scalability is crucial. This project showcases the utilization of various AWS services and tools to achieve seamless deployment of an Elastic Kubernetes Service (EKS) cluster and application deployment on Amazon's EKS using Terraform and GitHub Actions. Building upon the insights shared in the blog [Exploring AWS EKS with eksctl](https://github.com/sochaty/eks-with-eksctl) we will explore a comprehensive implementation that leverages AWS Parameter Store, AWS Secrets Manager, AWS EKS, and AWS Network Services, coupled with the power of GitHub Actions for CI/CD.
 
 ## Technologies Used
 
@@ -234,7 +234,7 @@ The above figure shows the command output of command `kubectl get all -n kube-sy
 
 Just to summarize the post 😊
 
-This blog exemplifies the convergence of modern cloud practices with the power of automation and orchestration tools. By harnessing AWS Parameter Store, AWS Secrets Manager, AWS EKS, and various networking components, developers can create a highly available and configurable environment for their applications. With GitHub Actions, the entire process is streamlined, offering efficient CI/CD pipelines for testing, deployment, and maintenance. By following the footsteps of the blog Exploring AWS EKS with eksctl, this blog provides a hands-on approach to mastering the deployment of Kubernetes-based applications on AWS using Terraform.
+This blog exemplifies the convergence of modern cloud practices with the power of automation and orchestration tools. By harnessing AWS Parameter Store, AWS Secrets Manager, AWS EKS, and various networking components, developers can create a highly available and configurable environment for their applications. With GitHub Actions, the entire process is streamlined, offering efficient CI/CD pipelines for testing, deployment, and maintenance. By following the footsteps of the blog [Exploring AWS EKS with eksctl](https://github.com/sochaty/eks-with-eksctl), this blog provides a hands-on approach to mastering the deployment of Kubernetes-based applications on AWS using Terraform.
 
 That’s it for the day, Do let me know your feedback in the comment section.
 
